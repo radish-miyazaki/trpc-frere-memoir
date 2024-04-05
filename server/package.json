@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.12.0",
-    "@trpc/server": "^10.45.2",
+    "@trpc/server": "next",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "envsafe": "^2.0.3",
