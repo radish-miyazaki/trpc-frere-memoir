@@ -1,10 +1,10 @@
-import { prisma } from "./database/prisma";
-import { publicProcedure, router } from "./trpc/init-trpc";
 import * as trpcExpress from "@trpc/server/adapters/express";
 
-export const appRouter = router({
-  hello: publicProcedure.query(() => "Hello, TRPC!"),
-});
+import { maintenanceRouter } from "./context-maitenance/router";
+import { prisma } from "./database/prisma";
+import { mergeRouters } from "./trpc/init-trpc";
+
+export const appRouter = mergeRouters(maintenanceRouter);
 
 export type AppRouter = typeof appRouter;
 

@@ -17,9 +17,9 @@ model Flower {
   id               Int             @id @default(autoincrement())
   flowerCode       String          @unique
   name             String
-  deliversDays     Int // 発注リードタイム
+  deliveryDays     Int // 発注リードタイム
   purchaseQuantity Int // 購入単位数
-  maintableDays    Int // 品質維持可能日数
+  maintanableDays  Int // 品質維持可能日数
   bonquetDetails   BonquetDetail[]
 }
 
