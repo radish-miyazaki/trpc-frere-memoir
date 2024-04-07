@@ -13,6 +13,28 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Sample {
-  id Int @id
+model Flower {
+  id               Int             @id @default(autoincrement())
+  flowerCode       String          @unique
+  name             String
+  deliversDays     Int // 発注リードタイム
+  purchaseQuantity Int // 購入単位数
+  maintableDays    Int // 品質維持可能日数
+  bonquetDetails   BonquetDetail[]
+}
+
+model Bonquet {
+  id             Int             @id @default(autoincrement())
+  bonquetCode    String          @unique
+  name           String
+  bonquetDetails BonquetDetail[]
+}
+
+model BonquetDetail {
+  id             Int     @id @default(autoincrement())
+  flower         Flower  @relation(fields: [flowerId], references: [id])
+  flowerId       Int
+  flowerQuantity Int
+  bonquet        Bonquet @relation(fields: [bonquetId], references: [id])
+  bonquetId      Int
 }
