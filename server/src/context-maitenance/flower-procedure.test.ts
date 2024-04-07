@@ -4,9 +4,7 @@ import { createCallerFactory } from "../trpc/init-trpc";
 
 // https://trpc.io/docs/server/server-side-calls
 const createCaller = createCallerFactory(appRouter);
-const caller = createCaller({
-  prisma,
-});
+const caller = createCaller({ prisma });
 
 describe("createFlower", () => {
   it("花を登録できること", async () => {
