@@ -1,8 +1,9 @@
-// TODO: Implement seeders
-const exampleSeeder = async () => {};
+import { bouquetSeeder } from "./bouquet";
+import { flowerSeeder } from "./flower";
 
 const databaseSeeder = {
-  exampleSeeder,
+  flowerSeeder,
+  bouquetSeeder,
 };
 
 type SeederName = keyof typeof databaseSeeder;
