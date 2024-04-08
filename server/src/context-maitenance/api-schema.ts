@@ -18,3 +18,11 @@ export const CreateBouquetInput = z.object({
   name: z.string(),
   bouquetDetails: z.array(BouquetDetail).min(1),
 });
+
+export const BouquetIdInput = z.object({
+  bouquetId: z.number(),
+});
+
+export const FlowerIdInput = z.object({
+  flowerId: z.number(),
+});

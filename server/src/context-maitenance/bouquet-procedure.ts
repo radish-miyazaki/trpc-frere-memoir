@@ -1,5 +1,6 @@
 import { publicProcedure } from "../trpc/init-trpc";
-import { CreateBouquetInput } from "./api-schema";
+import { notFoundError } from "../utils/trpc";
+import { BouquetIdInput, CreateBouquetInput } from "./api-schema";
 
 export const createBouquet = publicProcedure
   .input(CreateBouquetInput)
@@ -17,4 +18,31 @@ export const createBouquet = publicProcedure
     });
 
     return bouquet;
+  });
+
+export const getBouquets = publicProcedure.query(({ ctx }) => {
+  return ctx.prisma.bouquet.findMany({
+    select: { id: true, bouquetCode: true, name: true },
+  });
+});
+
+export const getBouquet = publicProcedure
+  .input(BouquetIdInput)
+  .query(async ({ ctx, input }) => {
+    const flower = await ctx.prisma.bouquet.findUnique({
+      where: { id: input.bouquetId },
+      include: {
+        bouquetDetails: {
+          include: {
+            flower: {
+              select: { id: true, name: true, flowerCode: true },
+            },
+          },
+        },
+      },
+    });
+
+    if (!flower) throw notFoundError;
+
+    return flower;
   });

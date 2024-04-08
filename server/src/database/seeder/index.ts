@@ -1,5 +1,5 @@
-import { bouquetSeeder } from "./bouquet";
-import { flowerSeeder } from "./flower";
+import { bouquetSeeder } from "./bouquet-seeder";
+import { flowerSeeder } from "./flower-seeder";
 
 const databaseSeeder = {
   flowerSeeder,
