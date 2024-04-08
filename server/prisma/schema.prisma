@@ -20,21 +20,21 @@ model Flower {
   deliveryDays     Int // 発注リードタイム
   purchaseQuantity Int // 購入単位数
   maintanableDays  Int // 品質維持可能日数
-  bonquetDetails   BonquetDetail[]
+  bouquetDetails   BouquetDetail[]
 }
 
-model Bonquet {
+model Bouquet {
   id             Int             @id @default(autoincrement())
-  bonquetCode    String          @unique
+  bouquetCode    String          @unique
   name           String
-  bonquetDetails BonquetDetail[]
+  bouquetDetails BouquetDetail[]
 }
 
-model BonquetDetail {
+model BouquetDetail {
   id             Int     @id @default(autoincrement())
   flower         Flower  @relation(fields: [flowerId], references: [id])
   flowerId       Int
   flowerQuantity Int
-  bonquet        Bonquet @relation(fields: [bonquetId], references: [id])
-  bonquetId      Int
+  bouquet        Bouquet @relation(fields: [bouquetId], references: [id])
+  bouquetId      Int
 }

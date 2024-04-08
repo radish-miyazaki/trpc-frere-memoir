@@ -5,7 +5,7 @@ import { createCallerFactory } from "../trpc/init-trpc";
 const createCaller = createCallerFactory(appRouter);
 const caller = createCaller({ prisma });
 
-describe("createBonquet", () => {
+describe("createBouquet", () => {
   it("花束を登録できること", async () => {
     const flower = await prisma.flower.create({
       data: {
@@ -17,16 +17,16 @@ describe("createBonquet", () => {
       },
     });
 
-    const bonquet = await caller.createBonquet({
+    const bouquet = await caller.createBouquet({
       name: "ローズの花束",
-      bonquetCode: "BA001",
-      bonquetDetails: [{ flowerId: flower.id, flowerQuantity: 5 }],
+      bouquetCode: "BA001",
+      bouquetDetails: [{ flowerId: flower.id, flowerQuantity: 5 }],
     });
 
     expect(
       await Promise.all([
-        prisma.bonquet.count(),
-        prisma.bonquetDetail.count({ where: { bonquetId: bonquet.id } }),
+        prisma.bouquet.count(),
+        prisma.bouquetDetail.count({ where: { bouquetId: bouquet.id } }),
       ])
     ).toStrictEqual([1, 1]);
   });

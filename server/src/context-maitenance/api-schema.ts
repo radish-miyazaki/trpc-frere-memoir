@@ -8,13 +8,13 @@ export const CreateFlowerInput = z.object({
   maintanableDays: z.number(),
 });
 
-export const BonquetDetail = z.object({
+export const BouquetDetail = z.object({
   flowerId: z.number(),
   flowerQuantity: z.number(),
 });
 
-export const CreateBonquetInput = z.object({
-  bonquetCode: z.string(),
+export const CreateBouquetInput = z.object({
+  bouquetCode: z.string(),
   name: z.string(),
-  bonquetDetails: z.array(BonquetDetail).min(1),
+  bouquetDetails: z.array(BouquetDetail).min(1),
 });
