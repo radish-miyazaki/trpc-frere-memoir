@@ -24,3 +24,9 @@ export const CreatePurchaseInput = z.object({
 });
 
 export type CreatePurchaseInput = z.infer<typeof CreatePurchaseInput>;
+
+export const RegisterArrivalInput = z.object({
+  purchaseId: z.number(),
+});
+
+export type RegisterArrivalInput = z.infer<typeof RegisterArrivalInput>;

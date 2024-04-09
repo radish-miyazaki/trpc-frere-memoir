@@ -20,3 +20,9 @@ export type Purchase = {
 export type CreatedPurchase = Purchase & {
   id: number;
 };
+
+export type PurchaseArrival = {
+  id: number;
+  purchaseId: number;
+  arrivedAt: Date;
+};
