@@ -14,7 +14,7 @@ export type PurchaseDetail = {
 
 export type Purchase = {
   deliveryDate: Date;
-  purchasesDetails: PurchaseDetail[];
+  purchaseDetails: PurchaseDetail[];
 };
 
 export type CreatedPurchase = Purchase & {

@@ -45,10 +45,10 @@ model BouquetDetail {
 
 // 花の発注
 model Purchase {
-  id               Int              @id @default(autoincrement())
-  deliveryDate     DateTime         @db.Date // 希望納期日
-  arrival          PurchaseArrival?
-  purchasesDetails PurchaseDetail[]
+  id              Int              @id @default(autoincrement())
+  deliveryDate    DateTime         @db.Date // 希望納期日
+  arrival         PurchaseArrival?
+  purchaseDetails PurchaseDetail[]
 }
 
 // 花の発注明細

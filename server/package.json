@@ -8,7 +8,7 @@
     "db:seed": "DB=dev ts-node --transpileOnly src/database/seeder/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "DB=test yarn run -T jest"
+    "test": "DB=test jest"
   },
   "prisma": {
     "seed": "ts-node --transpileOnly src/database/seeder/index.ts"

@@ -14,7 +14,7 @@ function checkIfDeliverable({
   purchase: Purchase;
 }): boolean {
   const maxDeliveryDays = Math.max(
-    ...purchase.purchasesDetails.map((detail) => detail.flower.deliveryDays)
+    ...purchase.purchaseDetails.map((detail) => detail.flower.deliveryDays)
   );
 
   // 納品希望日時が、発注リードタイムを足した日付よりも前だと発注不可
@@ -40,7 +40,7 @@ async function validatePurchase(
     where: { id: { in: flowerIdList } },
   });
   const flowerMap = new Map(flowers.map((flower) => [flower.id, flower]));
-  const purchasesDetails: PurchaseDetail[] = input.details.map((detail) => {
+  const purchaseDetails: PurchaseDetail[] = input.details.map((detail) => {
     const flower = flowerMap.get(detail.flowerId);
     if (flower === undefined) {
       throw new TRPCError({
@@ -54,7 +54,7 @@ async function validatePurchase(
 
   const purchase: Purchase = {
     deliveryDate: new Date(input.deliveryDate),
-    purchasesDetails,
+    purchaseDetails,
   };
 
   if (!checkIfDeliverable({ today: new Date(), purchase })) {
@@ -73,13 +73,13 @@ async function persistPurchase(
 ): Promise<CreatedPurchase> {
   const purchase = await tx.purchase.create({
     include: {
-      purchasesDetails: { include: { flower: true } },
+      purchaseDetails: { include: { flower: true } },
     },
     data: {
       deliveryDate: validatedPurchase.deliveryDate,
-      purchasesDetails: {
+      purchaseDetails: {
         createMany: {
-          data: validatedPurchase.purchasesDetails.map((detail) => ({
+          data: validatedPurchase.purchaseDetails.map((detail) => ({
             flowerId: detail.flower.id,
             orderQuantity: detail.orderQuantity,
           })),
