@@ -3,8 +3,9 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import { maintenanceRouter } from "./context-maitenance/router";
 import { prisma } from "./database/prisma";
 import { mergeRouters } from "./trpc/init-trpc";
+import { purchaseRouter } from "./context-purchase/router";
 
-export const appRouter = mergeRouters(maintenanceRouter);
+export const appRouter = mergeRouters(maintenanceRouter, purchaseRouter);
 
 export type AppRouter = typeof appRouter;
 
